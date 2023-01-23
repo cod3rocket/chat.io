@@ -1,2 +1,14 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+  import { io } from "socket.io-client";
+
+  const socket = io("ws://localhost:3000");
+
+  socket.emit("sending client message");
+
+  socket.on("sending server message", () => {
+    console.log("received server message!")
+  });
+</script>
+
+<h1>Hello, World!</h1>
+<p>Check the browser console</p>
