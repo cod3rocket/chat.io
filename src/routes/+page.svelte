@@ -1,14 +1,30 @@
 <script lang="ts">
-  import { io } from "socket.io-client";
+	import { onMount } from 'svelte';
+	import ChatInput from '../components/chat-input.svelte';
+	import Chat from '../components/chat.svelte';
+	import SetUsername from '../components/set-username.svelte';
+	import { usernameWritable } from '../core/services/user';
 
-  const socket = io("ws://localhost:3000");
+	let username: string = '';
 
-  socket.emit("sending client message");
-
-  socket.on("sending server message", () => {
-    console.log("received server message!")
-  });
+	onMount(async () =>
+		usernameWritable.subscribe((value) => {
+			username = value;
+		})
+	);
 </script>
 
-<h1>Hello, World!</h1>
-<p>Check the browser console</p>
+{#if username.length === 0}
+	<SetUsername />
+{/if}
+<div class="chat-wrapper w-full h-screen bg-base-100">
+	<Chat />
+	<ChatInput />
+</div>
+
+<style>
+	.chat-wrapper {
+		display: grid;
+		grid-template-rows: 1fr auto;
+	}
+</style>
