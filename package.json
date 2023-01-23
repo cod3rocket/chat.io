@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"start:dev": "vite dev",
-		"start:server": "deno run --allow-net ./server/index.ts",
+		"start:server": "deno run --allow-env --allow-net ./server/index.ts",
 		"preview": "vite preview",
 		"build": "vite build",
 		"test": "playwright test",
