@@ -1,14 +1,16 @@
 <script lang="ts">
-  import { io } from "socket.io-client";
-
-  const socket = io("ws://localhost:3000");
-
-  socket.emit("sending client message");
-
-  socket.on("sending server message", () => {
-    console.log("received server message!")
-  });
+	import ChatInput from '../components/chat-input.svelte';
+	import Chat from '../components/chat.svelte';
 </script>
 
-<h1>Hello, World!</h1>
-<p>Check the browser console</p>
+<div class="chat-wrapper w-full h-screen bg-base-100">
+	<Chat />
+	<ChatInput />
+</div>
+
+<style>
+	.chat-wrapper {
+		display: grid;
+		grid-template-rows: 1fr auto;
+	}
+</style>
