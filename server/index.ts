@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
 
 			console.log(`socket ${socket.id} sent message: ${parsedMessage}`);
 
-			socket.emit('message', parsedMessage);
+			io.emit('message', parsedMessage);
 		} catch (error) {
 			console.error(error);
 		}
