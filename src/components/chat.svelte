@@ -2,17 +2,22 @@
 	import { afterUpdate, onMount } from 'svelte';
 	import { socket } from '../core/infra/socket';
 	import { MessageModel, type Message } from '../core/model/message';
+	import { usernameWritable } from '../core/services/user';
 
 	let chatWrapperRef: HTMLDivElement;
-	let messages: Message[] = [];
 
-	let username = 'svelte';
+	let username: string = '';
+	let messages: Message[] = [];
 
 	onMount(async () => {
 		socket.on('message', (message: any) => {
 			const parsedMessage = MessageModel.safeParse(message);
 
 			messages = [...messages, message];
+		});
+
+		usernameWritable.subscribe((value) => {
+			username = value;
 		});
 	});
 

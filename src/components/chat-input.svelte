@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { sendMessage } from '../core/services/chat';
+	import { usernameWritable } from '../core/services/user';
 
-	let username = 'svelte';
+	let username: string = '';
 	let message: string = '';
 
 	const sendMessageHandler = () => {
@@ -24,6 +26,12 @@
 			sendMessageHandler();
 		}
 	};
+
+	onMount(async () => {
+		usernameWritable.subscribe((value) => {
+			username = value;
+		});
+	});
 </script>
 
 <div class="flex gap-2 w-full p-4 bg-base-300">
