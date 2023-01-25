@@ -49,10 +49,15 @@
 			</div>
 			<div class="card-body pl-0">
 				<h2
-					class="card-title
+					class="card-title gap-0 items-baseline
           {message.username !== username ? 'text-primary' : 'text-secondary'}"
-				>
-					{message.username}
+					>
+					{message.username.slice(0, -5)}
+						<span class="text-sm
+						{message.username !== username ? 'text-primary/50' : 'text-secondary/50'}"
+						>
+							{message.username.slice(-5)}
+						</span>
 				</h2>
 				{#each message.message.split('\n') as paragraph}
 					<p class="card-text">{paragraph}</p>
