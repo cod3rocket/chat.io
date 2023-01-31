@@ -1,6 +1,6 @@
 {
-	"name": "web-chat.io",
-	"version": "0.0.1",
+	"name": "chat.io",
+	"version": "1.0.0",
 	"private": true,
 	"scripts": {
 		"start:dev": "vite dev",
